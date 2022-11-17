@@ -25,7 +25,7 @@ class WebViewActivity : Activity() {
     }
 
     interface Callback {
-        fun success(accessToken: String?)
+        fun success(taokeResult: HashMap<String, String>)
         fun failed(errorMsg: String?)
     }
 
@@ -80,17 +80,26 @@ class WebViewActivity : Activity() {
                 Log.e("", "onPageStarted url : $url")
                 super.onPageStarted(view, url, favicon)
 
-                if (url?.contains("access_token=") == true && (url.contains("oauth.taobao.com") || url.contains("oauth.m.taobao.com"))) {
+                if (url?.contains("access_token=") == true && (url.contains("oauth.taobao.com") || url.contains("oauth.m.taobao.com") || url.contains("suning1gou.cn"))) {
                     val accessToken: String = getURLParam("access_token", url)
                     Log.e("", "onPageStarted accessToken $accessToken")
-                    callBack?.success(accessToken)
+                    val resMap: HashMap<String, String> = HashMap<String, String>()
+                    resMap["accessToken"] = accessToken
+                    if (url?.contains("taobao_user_nick=") == true) {
+                        val taobaoUserNick: String = getURLParam("taobao_user_nick", url)
+                        Log.e("", "onPageStarted accessToken $taobaoUserNick")
+                        resMap["taobaoUserNick"] = taobaoUserNick
+                    }
+                    callBack?.success(resMap)
                     callBack = null
                     finish()
                 }
                 if (url?.contains("code=") == true) {
                     val code: String = getURLParam("code", url)
                     Log.e("", "onPageStarted code $code")
-                    callBack?.success(code)
+                    val resMap: HashMap<String, String> = HashMap<String, String>()
+                    resMap["code"] = code
+                    callBack?.success(resMap)
                     callBack = null
                     finish()
                 }

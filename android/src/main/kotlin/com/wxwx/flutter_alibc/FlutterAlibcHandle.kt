@@ -115,10 +115,8 @@ class FlutterAlibcHandle(var methodChannel: MethodChannel?){
         val map = call.arguments as HashMap<String, Any>
         val url = call.argument<String>("url")
         WebViewActivity.callBack = object : WebViewActivity.Callback {
-            override fun success(accessToken: String?) {
-                val resMap: HashMap<String, Any?> = HashMap<String, Any?>()
-                resMap["accessToken"] = accessToken
-                methodChannel!!.invokeMethod("AlibcTaokeLogin", PluginResponse.success(resMap).toMap())
+            override fun success(taokeResult: HashMap<String, String>) {
+                methodChannel!!.invokeMethod("AlibcTaokeLogin", PluginResponse.success(taokeResult).toMap())
             }
 
             override fun failed(errorMsg: String?) {
@@ -143,10 +141,8 @@ class FlutterAlibcHandle(var methodChannel: MethodChannel?){
         val map = call.arguments as HashMap<*, *>
         val url = call.argument<String>("url")
         WebViewActivity.callBack = object : WebViewActivity.Callback {
-            override fun success(accessToken: String?) {
-                val resMap: HashMap<String, Any?> = HashMap<String, Any?>()
-                resMap["code"] = accessToken
-                methodChannel!!.invokeMethod("AlibcTaokeLoginForCode", PluginResponse.success(resMap).toMap())
+            override fun success(taokeResult: HashMap<String, String>) {
+                methodChannel!!.invokeMethod("AlibcTaokeLoginForCode", PluginResponse.success(taokeResult).toMap())
             }
 
             override fun failed(errorMsg: String?) {
