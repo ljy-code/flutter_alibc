@@ -1,11 +1,11 @@
 name: flutter_alibc
-description: Flutter版本的阿里百川，android V4.1.0.1 && ios V4.1.0.0
-version: 1.0.0-nullsafety
+description: Flutter版本的阿里百川，android V4.1.0.3.1 && ios V4.1.0.0
+version: 1.0.1-nullsafety
 homepage: https://github.com/flutterbest/flutter_alibc_kit.git
 
 environment:
   sdk: '>=2.12.0 <3.0.0'
-  flutter: ">=1.20.0"
+  flutter: '>=1.20.0'
 
 dependencies:
   flutter:
