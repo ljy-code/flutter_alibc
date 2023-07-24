@@ -18,6 +18,10 @@ rootProject.allprojects {
     repositories {
         google()
         mavenCentral()
+
+        flatDir {
+            dirs 'libs'
+        }
     }
 }
 
@@ -66,5 +70,5 @@ dependencies {
     //ut
     // implementation 'com.taobao.android:utdid4all:1.5.2'
     // implementation 'com.alibaba.mtl:app-monitor-sdk:2.6.4.5_for_bc'
-    compile fileTree(include: ['*.jar','*.aar'], dir: 'libs')
+    compileOnly fileTree(include: ['*.jar','*.aar'], dir: 'libs')
 }
